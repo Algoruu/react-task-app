@@ -1,20 +1,37 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC, useRef, useState } from 'react'
+import { FiCheck } from 'react-icons/fi';
 
 type TSideFormOpen = {
-  setFormOpen : React.Dispatch<React.SetStateAction<boolean>>
+  inputRef : React.RefObject<HTMLInputElement>,
+  setIsFormOpen : React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SideForm: FC<TSideFormOpen> = ({
-  setFormOpen
+  setIsFormOpen,
+  inputRef
 }) => {
+  const [inputText, setInputText] = useState('');
   
+  const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  }
+
+  const handleOnBlur = () => {
+    setIsFormOpen(false);
+  }
 
   return (
     <div>
-      <input 
+      <input
+        // ref={inputRef}
+        autoFocus
         type='text'
         placeholder='새로운 게시판 등록하기'
+        value={inputText}
+        onChange={handleChange}
+        onBlur={handleOnBlur}
       />
+      <FiCheck />
     </div>
   )
 }
