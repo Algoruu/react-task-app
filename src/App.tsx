@@ -8,10 +8,13 @@ function App() {
 const [activeBoardId, setactiveBoardId] = useState("board-0");
   return (
     <div className={appContainer}>
+      <BoardList 
+        activeBoardId={activeBoardId}
+        setactiveBoardId={setactiveBoardId}
+      />
+
       <div className={board}>
-        <BoardList 
-          activeBoardId={activeBoardId}
-          setactiveBoardId={setactiveBoardId} />
+        
       </div>
 
       <div className={buttons}>
